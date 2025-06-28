@@ -7,19 +7,19 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # Allows manual triggering from the GitHub UI
+  workflow_dispatch: 
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest # GitHub-hosted runner, powerful enough for image builds
+    runs-on: ubuntu-latest 
 
     permissions:
-      contents: read # Allow reading repo contents
-      packages: write # Allow pushing images to ghcr.io
+      contents: read 
+      packages: write 
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4 # Get your repository code
+        uses: actions/checkout@v4 
 
       - name: Set up QEMU (for multi-arch builds if desired, optional but good practice)
         uses: docker/setup-qemu-action@v3
@@ -27,21 +27,19 @@ jobs:
       - name: Set up Docker Buildx (for advanced build features and multi-arch)
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to GitHub Container Registry (GHCR)
+      - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }} # Uses the GitHub username of the actor triggering the workflow
-          password: ${{ secrets.GITHUB_TOKEN }} # Special token provided by GitHub Actions for authentication
-
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and Push Custom Bluefin Image
         uses: docker/build-push-action@v6
         with:
-          context: . # Build context is the current directory (where Dockerfile is located)
-          push: true # Push the image to the registry after building
+          context: .
+          push: true 
           tags: |
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ github.sha }}
-          platforms: linux/amd64 # Specify architecture. Bluefin is primarily x86_64.
-          cache-from: type=gha # Cache layers using GitHub Actions cache
-          cache-to: type=gha,mode=max # Store layers in GitHub Actions cache for faster subsequent builds
+          platforms: linux/amd64
+          cache-from: type=gha 
+          cache-to: type=gha,mode=max 
