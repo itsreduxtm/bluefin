@@ -46,8 +46,6 @@ RUN rpm-ostree install \
     udisks2 \
     pipewire \
     libvirt-daemon \
-    # Add any other specific RPM packages you need for your Chromebox setup.
-    # Keep this list as lean as possible to conserve RAM and disk space.
     && true 
 
 # --- Masking Unnecessary Services ---
