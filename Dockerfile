@@ -89,34 +89,3 @@ RUN systemctl enable \
     # Add any other critical services your specific setup requires to be enabled by default.
     
 
-# --- Set Default Shell for Root (Optional but Recommended) ---
-# Changes the default shell for the root user. Useful for interactive sessions via SSH or console.
-RUN usermod --shell /usr/bin/zsh root
-
-# --- Customizations (Example: Adding a custom script or configuration) ---
-# If you have custom scripts, configurations, or binaries you want to include in your
-# OSTree image layer, you would add them here. For a minimalist approach, keep this
-# to an absolute minimum.
-# Example: Adding a custom startup script for a specific hardware tweak.
-# COPY scripts/my-chromebox-tweak.sh /usr/local/bin/
-# RUN chmod +x /usr/local/bin/my-chromebox-tweak.sh
-# Example: Adding a custom systemd service for your tweak.
-# COPY systemd/my-chromebox-tweak.service /etc/systemd/system/
-# RUN systemctl enable my-chromebox-tweak.service
-
-# --- Important Final Note ---
-# This Dockerfile creates a *container image*. To apply this custom image
-# to your Bluefin OS installation, you will use `rpm-ostree` commands on your
-# *host system*.
-#
-# Build the image (typically using podman):
-# podman build -t ghcr.io/itsreduxtm/bluefin:latest .
-#
-# Push the image to GitHub Container Registry (requires ghcr.io login):
-# podman push ghcr.io/itsreduxtm/bluefin:latest
-#
-# Then, on your Bluefin OS system, rebase to your custom image:
-# rpm-ostree rebase ostree-unverified-registry:ghcr.io/itsreduxtm/bluefin:latest
-#
-# Reboot to apply the changes:
-# systemctl reboot
