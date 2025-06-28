@@ -1,8 +1,5 @@
 name: Build and Push Custom Bluefin Image
 
-# This workflow runs when:
-# 1. Code is pushed to the 'main' branch (e.g., you commit changes to your Dockerfile or other build assets).
-# 2. You manually trigger it from the GitHub Actions UI.
 on:
   push:
     branches:
