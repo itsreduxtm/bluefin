@@ -45,8 +45,7 @@ RUN rpm-ostree install \
     gvfs \
     udisks2 \
     pipewire \
-    libvirt-daemon \
-    &&
+    libvirt-daemon
     
 
 # --- Masking Unnecessary Services ---
@@ -66,8 +65,7 @@ RUN systemctl mask \
     flatpak-system-update.timer \
     brew-setup.service \
     brew-update.timer \
-    brew-upgrade.timer \
-    &&
+    brew-upgrade.timer
     # Consider masking more services if your system is truly headless or very minimal:
     # gnome-initial-setup.service \
     # geoclue.service \
@@ -86,8 +84,7 @@ RUN systemctl enable \
     systemd-oomd.service \
     firewalld.service \
     upower.service \
-    systemd-resolved.service \
-    &&
+    systemd-resolved.service
     # Add any other critical services your specific setup requires to be enabled by default.
     
 
