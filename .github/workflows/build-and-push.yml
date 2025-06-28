@@ -31,6 +31,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and Push Custom Bluefin Image
         uses: docker/build-push-action@v6
