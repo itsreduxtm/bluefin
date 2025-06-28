@@ -46,7 +46,7 @@ RUN rpm-ostree install \
     udisks2 \
     pipewire \
     libvirt-daemon \
-    && true 
+    
 
 # --- Masking Unnecessary Services ---
 # 'systemctl mask' creates a symlink to /dev/null for a service file, preventing it
@@ -75,7 +75,7 @@ RUN systemctl mask \
     # bolt.service \
     # colord.service \
     # gdm.service \
-    && true
+    
 
 # --- Enabling Essential Services/Timers ---
 # 'systemctl enable' ensures these services will be active on boot.
@@ -87,7 +87,7 @@ RUN systemctl enable \
     upower.service \
     systemd-resolved.service \
     # Add any other critical services your specific setup requires to be enabled by default.
-    && true
+    
 
 # --- Set Default Shell for Root (Optional but Recommended) ---
 # Changes the default shell for the root user. Useful for interactive sessions via SSH or console.
