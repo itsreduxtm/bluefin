@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.4
+syntax=docker/dockerfile:1.4
 # Dockerfile for Creating a Custom Bluefin OSTree Image Layer
 #
 # This Dockerfile is designed to build a new immutable OS image based on Bluefin,
