@@ -1,27 +1,15 @@
 syntax=docker/dockerfile:1.4
-# Dockerfile for Creating a Custom Bluefin OSTree Image Layer
-#
-# This Dockerfile is designed to build a new immutable OS image based on Bluefin,
-# tailored for low-resource systems like your Celeron N4020 with 4GB RAM and ZRAM.
-# It leverages rpm-ostree for atomic package management and system modifications.
-#
-# The resulting image is intended for use with `rpm-ostree rebase` or `rpm-ostree ex-container`
-# on a Bluefin host, NOT to be run directly as a typical Docker application container.
 
-# --- Base Image: Official Bluefin from ghcr.io ---
 # This pulls the latest Bluefin OSTree image, which is the foundation for your custom layer.
 # As confirmed, ghcr.io is the official and primary distribution channel for Universal Blue images.
 FROM ghcr.io/ublue-os/bluefin:latest
-
-# --- Image Metadata (Labels) ---
 # These labels provide useful information about your custom image layer.
 LABEL org.opencontainers.image.title="Custom Bluefin Minimal-CE N4020"
-LABEL org.opencontainers.image.authors="itsreduxtm@example.com" # Updated author email placeholder
+LABEL org.opencontainers.image.authors="itsreduxtm@example.com" 
 LABEL org.opencontainers.image.description="Optimized Bluefin OS image for low-RAM Celeron N4020 systems with zram, built as an rpm-ostree layer."
-LABEL org.opencontainers.image.url="https://github.com/itsreduxtm/bluefin" # Link to your new repository
-LABEL org.opencontainers.image.source="https://github.com/ublue-os/bluefin" # Source of the base Bluefin image
-LABEL org.opencontainers.image.created="$(date --iso-8601=seconds)" # Automatically adds build date/time
-
+LABEL org.opencontainers.image.url="https://github.com/itsreduxtm/bluefin"
+LABEL org.opencontainers.image.source="https://github.com/ublue-os/bluefin"
+LABEL org.opencontainers.image.created="$(date --iso-8601=seconds)"
 # --- Layering RPM Packages with rpm-ostree ---
 # 'rpm-ostree install' adds packages as an overlay to the immutable base.
 # The selection below is based on your provided list, focusing on essentials and tools
@@ -64,7 +52,7 @@ RUN rpm-ostree install \
     libvirt-daemon \
     # Add any other specific RPM packages you need for your Chromebox setup.
     # Keep this list as lean as possible to conserve RAM and disk space.
-    && true
+    && true 
 
 # --- Masking Unnecessary Services ---
 # 'systemctl mask' creates a symlink to /dev/null for a service file, preventing it
