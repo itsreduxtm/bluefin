@@ -46,6 +46,7 @@ RUN rpm-ostree install \
     udisks2 \
     pipewire \
     libvirt-daemon \
+    &&
     
 
 # --- Masking Unnecessary Services ---
@@ -66,6 +67,7 @@ RUN systemctl mask \
     brew-setup.service \
     brew-update.timer \
     brew-upgrade.timer \
+    &&
     # Consider masking more services if your system is truly headless or very minimal:
     # gnome-initial-setup.service \
     # geoclue.service \
@@ -75,7 +77,6 @@ RUN systemctl mask \
     # bolt.service \
     # colord.service \
     # gdm.service \
-    
 
 # --- Enabling Essential Services/Timers ---
 # 'systemctl enable' ensures these services will be active on boot.
@@ -86,6 +87,7 @@ RUN systemctl enable \
     firewalld.service \
     upower.service \
     systemd-resolved.service \
+    &&
     # Add any other critical services your specific setup requires to be enabled by default.
     
 
