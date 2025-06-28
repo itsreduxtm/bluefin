@@ -1,7 +1,3 @@
-syntax=docker/dockerfile:1.4
-
-# This pulls the latest Bluefin OSTree image, which is the foundation for your custom layer.
-# As confirmed, ghcr.io is the official and primary distribution channel for Universal Blue images.
 FROM ghcr.io/ublue-os/bluefin:latest
 # These labels provide useful information about your custom image layer.
 LABEL org.opencontainers.image.title="Custom Bluefin Minimal-CE N4020"
