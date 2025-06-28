@@ -40,8 +40,8 @@ jobs:
           context: . # Build context is the current directory (where Dockerfile is located)
           push: true # Push the image to the registry after building
           tags: |
-            ghcr.io/${{ github.repository }}:latest # latest tag
-            ghcr.io/${{ github.repository }}:${{ github.sha }} # Tag with Git commit SHA for unique versions
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
           platforms: linux/amd64 # Specify architecture. Bluefin is primarily x86_64.
           cache-from: type=gha # Cache layers using GitHub Actions cache
           cache-to: type=gha,mode=max # Store layers in GitHub Actions cache for faster subsequent builds
